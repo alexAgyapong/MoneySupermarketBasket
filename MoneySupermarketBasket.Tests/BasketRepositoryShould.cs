@@ -87,5 +87,19 @@ namespace MoneySupermarketBasket.Tests
             Assert.Equal(3.10M, actual);
 
         }
+        [Fact]
+        public void Apply_50_percent_discount_to_1_bread_when_2_butter_and_bread_are_added()
+        {
+            var item = new BasketItem(ProductData.Bread, 1);
+            var item2 = new BasketItem(ProductData.Butter, 2);
+            var basketRepository = new BasketRepository();
+
+            basketRepository.AddItem(item);
+            basketRepository.AddItem(item2);
+
+            var actual = basketRepository.ComputeTotals();
+            Assert.Equal(2.10M, actual);
+
+        }
     }
 }
