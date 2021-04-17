@@ -19,5 +19,13 @@ namespace MoneySupermarketBasket.Domain.Data
         public static Product Milk => AvailableProducts.FirstOrDefault(x => x.Name.Equals("Milk"));
         public static Product Butter => AvailableProducts.FirstOrDefault(x => x.Name.Equals("Butter"));
 
+        public static List<BasketItem> Items()
+        {
+            var item = new BasketItem(Bread, 1);
+            var item2 = new BasketItem(Milk, 1);
+            var item3 = new BasketItem(Butter, 1);
+
+            return new List<BasketItem> { item, item2, item3 };
+        }
     }
 }

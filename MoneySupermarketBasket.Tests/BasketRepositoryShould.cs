@@ -174,7 +174,7 @@ namespace MoneySupermarketBasket.Tests
 
             var actual = basketRepository.ComputeTotals();
             Assert.Equal(4.45M, actual);
-
         }
+
     }
 }
