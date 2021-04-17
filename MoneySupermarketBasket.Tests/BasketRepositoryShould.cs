@@ -114,5 +114,18 @@ namespace MoneySupermarketBasket.Tests
             Assert.Equal(3.45M, actual);
 
         }
+
+        [Fact]
+        public void Allow_2_free_milk_when_8_milk_are_added()
+        {
+            var item = new BasketItem(ProductData.Milk, 8);
+            var basketRepository = new BasketRepository();
+
+            basketRepository.AddItem(item);
+
+            var actual = basketRepository.ComputeTotals();
+            Assert.Equal(6.9M, actual);
+
+        }
     }
 }
