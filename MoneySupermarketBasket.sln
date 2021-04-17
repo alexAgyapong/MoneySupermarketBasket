@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneySupermarketBasket.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneySupermarketBasket.Domain", "MoneySupermarketBasket.Domain\MoneySupermarketBasket.Domain.csproj", "{50A5C586-554D-4E9B-897A-A131C4E15872}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneySupermarketBasket.Client", "MoneySupermarketBasket.Client\MoneySupermarketBasket.Client.csproj", "{3551271D-2A35-4017-8B4A-3AAED015623D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{50A5C586-554D-4E9B-897A-A131C4E15872}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50A5C586-554D-4E9B-897A-A131C4E15872}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50A5C586-554D-4E9B-897A-A131C4E15872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3551271D-2A35-4017-8B4A-3AAED015623D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3551271D-2A35-4017-8B4A-3AAED015623D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3551271D-2A35-4017-8B4A-3AAED015623D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3551271D-2A35-4017-8B4A-3AAED015623D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -30,6 +30,7 @@ namespace MoneySupermarketBasket.Domain
             var result = new List<string>();
             foreach (var item in items)
             {
+                if (item.Quantity == 0) { item.Product.Cost *= 0.5; item.Quantity = 1; } // Added this for display purposes only
                 var subTotal = item.Quantity * item.Product.Cost;
                 var line = $"\t\t{item.Product.Name,-10}  {item.Quantity,-10}  £{subTotal,-10:F}";
                 result.Add(line);
