@@ -7,6 +7,9 @@ namespace MoneySupermarketBasket.Domain
     public class BasketRepository : IBasketRepository
     {
         private readonly List<BasketItem> basketItems = new();
+        private const string Butter = "Butter";
+        private const string Bread = "Bread";
+
         public BasketRepository()
         {
         }
@@ -25,7 +28,25 @@ namespace MoneySupermarketBasket.Domain
 
         public decimal ComputeTotals()
         {
+            if (DiscountFor(Butter))
+            {
+                var discount = 0.0;
+                var itemToDiscount = basketItems.FirstOrDefault(x => x.Product.Name.Equals(Bread));
+
+                if (itemToDiscount != null)
+                {
+                    itemToDiscount.Quantity--;
+                    discount = itemToDiscount.Product.Cost * 0.5;
+                    return (decimal)(basketItems.Sum(x => x.Product.Cost * x.Quantity) + discount);
+                }
+            }
+
             return (decimal)basketItems.Sum(x => x.Product.Cost * x.Quantity);
+        }
+
+        private bool DiscountFor(string productName)
+        {
+            return basketItems.Where(x => x.Product.Name.Equals(productName)).Any(x => x.Quantity == 2);
         }
     }
 }
