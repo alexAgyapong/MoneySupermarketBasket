@@ -2,13 +2,13 @@
 {
     public class Product
     {
-        private string v1;
-        private double v2;
 
-        public Product(string v1, double v2)
+        public string Name { get; set; }
+        public double Cost { get; set; }
+        public Product(string name, double cost)
         {
-            this.v1 = v1;
-            this.v2 = v2;
+            Name = name;
+            Cost = cost;
         }
     }
 }

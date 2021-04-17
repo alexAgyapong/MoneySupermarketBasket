@@ -2,13 +2,13 @@
 {
     public class BasketItem
     {
-        private Product product;
-        private int v;
-
-        public BasketItem(Product product, int v)
+        public BasketItem(Product product, int quantity)
         {
-            this.product = product;
-            this.v = v;
+            Product = product;
+            Quantity = quantity;
         }
+
+        public int Quantity { get; set; }
+        public Product Product { get; }
     }
 }
