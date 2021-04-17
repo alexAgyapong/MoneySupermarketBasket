@@ -40,7 +40,7 @@ namespace MoneySupermarketBasket.Domain
             }
             else if (IsMilkDiscount(Milk))
             {
-                return GetTotalsWithMilkDiscount();
+                return GetTotalsWithMilkDiscount(true);
             }
 
             return (decimal)basketItems.Sum(x => x.Product.Cost * x.Quantity);
@@ -67,10 +67,15 @@ namespace MoneySupermarketBasket.Domain
                 .Sum(x => x.Quantity * x.Product.Cost) + discount);
         }
 
-        private decimal GetTotalsWithMilkDiscount()
+        private decimal GetTotalsWithMilkDiscount(bool includeOtherItems = false)
         {
             var milkItem = basketItems.FirstOrDefault(x => x.Product.Name.Equals(Milk));
             milkItem.Quantity -= (milkItem.Quantity / 4);
+
+            if (includeOtherItems)
+            {
+                return (decimal)(basketItems.Sum(x => x.Quantity * x.Product.Cost));
+            }
 
             return (decimal)(basketItems
                 .Where(x => x.Product.Name.Equals(Milk))
