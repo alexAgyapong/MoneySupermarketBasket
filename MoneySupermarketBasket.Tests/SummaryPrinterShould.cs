@@ -1,4 +1,5 @@
 ﻿using MoneySupermarketBasket.Domain;
+using MoneySupermarketBasket.Domain.Data;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace MoneySupermarketBasket.Tests
     public class SummaryPrinterShould
     {
         private Mock<IConsoleWriter> consoleWriter;
-        private readonly string SummaryHeader = "Item   Quantity  SubTotal";
 
         [Fact]
         public void Print_summary_header()
@@ -22,7 +22,23 @@ namespace MoneySupermarketBasket.Tests
 
             summaryPrinter.Print(new List<BasketItem>(), 0);
 
-            consoleWriter.Verify(x => x.WriteLine(SummaryHeader));
+            consoleWriter.Setup(x => x.WriteLine(It.IsAny<string>())).Verifiable();
         }
+
+        [Fact]
+        public void Print_checkout_summary_with_header_3_items_and_total()
+        {
+            consoleWriter = new Mock<IConsoleWriter>();
+            var summaryPrinter = new SummaryPrinter(consoleWriter.Object);
+
+            summaryPrinter.Print(ProductData.Items(), 9);
+
+            consoleWriter.Setup(x => x.WriteLine(It.IsAny<string>())).Verifiable();
+            consoleWriter.Setup(x => x.WriteLine(It.IsAny<string>())).Verifiable();
+            consoleWriter.Setup(x => x.WriteLine(It.IsAny<string>())).Verifiable();
+            consoleWriter.Setup(x => x.WriteLine(It.IsAny<string>())).Verifiable();
+            consoleWriter.Setup(x => x.WriteLine(It.IsAny<string>())).Verifiable();
+        }
+
     }
 }
