@@ -144,5 +144,22 @@ namespace MoneySupermarketBasket.Tests
             Assert.Equal(9.0M, actual);
 
         }
+
+        [Fact]
+        public void Apply_bread_offer_even_when_basket_contains_none_qualifying_items()
+        {
+            var item = new BasketItem(ProductData.Butter, 2);
+            var item2 = new BasketItem(ProductData.Bread, 1);
+            var item3 = new BasketItem(ProductData.Milk, 1);
+            var basketRepository = new BasketRepository();
+
+            basketRepository.AddItem(item);
+            basketRepository.AddItem(item2);
+            basketRepository.AddItem(item3);
+
+            var actual = basketRepository.ComputeTotals();
+            Assert.Equal(3.25M, actual);
+
+        }
     }
 }
