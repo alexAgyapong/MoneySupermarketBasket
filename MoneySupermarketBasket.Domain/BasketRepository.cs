@@ -22,5 +22,10 @@ namespace MoneySupermarketBasket.Domain
         }
 
         public List<BasketItem> GetBasketItems() => basketItems;
+
+        public decimal ComputeTotals()
+        {
+            return (decimal)basketItems.Sum(x => x.Product.Cost * x.Quantity);
+        }
     }
 }
