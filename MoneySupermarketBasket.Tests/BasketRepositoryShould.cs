@@ -176,5 +176,19 @@ namespace MoneySupermarketBasket.Tests
             Assert.Equal(4.45M, actual);
         }
 
+        [Fact]
+        public void Restore_quantity_of_milk_after_applying_discount()
+        {
+            var item = new BasketItem(ProductData.Milk, 8);
+            var basketRepository = new BasketRepository();
+
+            basketRepository.AddItem(item);
+
+            var items = basketRepository.GetBasketItems();
+            var milkItem = items.FirstOrDefault(x=>x.Product.Name.Equals("Milk"));
+
+            Assert.Equal(8, milkItem.Quantity);
+
+        }
     }
 }

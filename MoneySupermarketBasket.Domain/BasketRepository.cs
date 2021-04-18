@@ -53,34 +53,36 @@ namespace MoneySupermarketBasket.Domain
 
             if (itemToDiscount != null)
             {
-                itemToDiscount.Quantity = itemToDiscount.Quantity > 1 ? itemToDiscount.Quantity - 1 : 0;
                 discount = itemToDiscount.Product.Cost * 0.5;
             }
 
             if (includeOtherItems)
             {
-                return (decimal)(basketItems.Sum(x => x.Quantity * x.Product.Cost) + discount);
+                return (decimal)(basketItems.Sum(x => x.Quantity * x.Product.Cost) - discount);
             }
 
             return (decimal)(basketItems
                 .Where(x => x.Product.Name.Equals(Bread) || x.Product.Name.Equals(Butter))
-                .Sum(x => x.Quantity * x.Product.Cost) + discount);
+                .Sum(x => x.Quantity * x.Product.Cost) - discount);
         }
 
         private decimal GetTotalsWithMilkDiscount(bool includeOtherItems = false)
         {
+            var discount = 0.0;
             var milkItem = basketItems.FirstOrDefault(x => x.Product.Name.Equals(Milk));
-            milkItem.Quantity -= (milkItem.Quantity / 4);
+            var quantityDiscounted = milkItem.Quantity / 4;
+            discount = milkItem.Product.Cost * quantityDiscounted;
 
             if (includeOtherItems)
             {
-                return (decimal)(basketItems.Sum(x => x.Quantity * x.Product.Cost));
+                return (decimal)(basketItems.Sum(x => x.Quantity * x.Product.Cost) - discount);
             }
 
             return (decimal)(basketItems
-                .Where(x => x.Product.Name.Equals(Milk))
-                .Sum(x => x.Quantity * x.Product.Cost));
+                            .Where(x => x.Product.Name.Equals(Milk))
+                            .Sum(x => x.Quantity * x.Product.Cost) - discount);
         }
+
         private bool IsBreadDiscount(string productName)
         {
             return basketItems.Where(x => x.Product.Name.Equals(productName)).Any(x => x.Quantity == 2);
