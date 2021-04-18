@@ -31,7 +31,7 @@ namespace MoneySupermarketBasket.Tests
             consoleWriter = new Mock<IConsoleWriter>();
             var summaryPrinter = new SummaryPrinter(consoleWriter.Object);
 
-            summaryPrinter.Print(ProductData.Items(), 9);
+            summaryPrinter.Print(Items(), 9);
 
             consoleWriter.Setup(x => x.WriteLine(It.IsAny<string>())).Verifiable();
             consoleWriter.Setup(x => x.WriteLine(It.IsAny<string>())).Verifiable();
@@ -40,5 +40,13 @@ namespace MoneySupermarketBasket.Tests
             consoleWriter.Setup(x => x.WriteLine(It.IsAny<string>())).Verifiable();
         }
 
+        public static List<BasketItem> Items()
+        {
+            var item = new BasketItem(ProductData.Butter, 2);
+            var item2 = new BasketItem(ProductData.Bread, 1);
+            var item3 = new BasketItem(ProductData.Milk, 8);
+
+            return new List<BasketItem> { item, item2, item3 };
+        }
     }
 }
